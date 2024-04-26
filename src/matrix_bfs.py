@@ -1,3 +1,4 @@
+import os
 from collections import deque
 
 ROW = 11
@@ -47,7 +48,10 @@ def bfs(mat, src, dest):
 
 
 def main():
-    with open("input.txt", "r") as file:
+    input_file_path = os.path.join(os.path.dirname(__file__), 'input.txt')
+    output_file_path = os.path.join(os.path.dirname(__file__), 'output.txt')
+
+    with open(input_file_path, "r") as file:
         start_point = list(map(int, file.readline().split(", ")))
         end_point = list(map(int, file.readline().split(", ")))
         ROW, COL = map(int, file.readline().split(","))
@@ -60,7 +64,7 @@ def main():
     dest = create_coordinate(end_point[0], end_point[1])
     dist = bfs(mat, source, dest)
 
-    with open("output.txt", "w") as file:
+    with open(output_file_path, "w") as file:
         file.write(str(dist))
 
 

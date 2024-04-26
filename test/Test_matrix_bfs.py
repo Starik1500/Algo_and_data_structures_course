@@ -7,11 +7,10 @@ src_path = os.path.join(common_parent_path, 'src')
 sys.path.append(src_path)
 from matrix_bfs import bfs, main, is_valid
 
-
 class TestShortestPath(unittest.TestCase):
     def test_write_output_file(self):
-        input_file = "input_with_path.txt"
-        output_file = "test_output_with_path.txt"
+        input_file = os.path.join(os.path.dirname(__file__), "input_with_path.txt")
+        output_file = os.path.join(os.path.dirname(__file__), "test_output_with_path.txt")
         start_point, end_point, mat = main(input_file)
         shortest_distance = bfs(mat, start_point, end_point)
         main(output_file, shortest_distance)
@@ -20,8 +19,8 @@ class TestShortestPath(unittest.TestCase):
         self.assertEqual(output_data, 12)
 
     def test_no_path(self):
-        input_file = "input_no_path.txt"
-        output_file = "test_output_no_path.txt"
+        input_file = os.path.join(os.path.dirname(__file__), "input_no_path.txt")
+        output_file = os.path.join(os.path.dirname(__file__), "test_output_no_path.txt")
         start_point, end_point, mat = main(input_file)
         shortest_distance = bfs(mat, start_point, end_point)
         main(output_file, shortest_distance)
@@ -42,7 +41,6 @@ class TestShortestPath(unittest.TestCase):
         self.assertFalse(is_valid(-1, 0))
         self.assertFalse(is_valid(0, -1))
         self.assertFalse(is_valid(ROW, COL))
-
 
 if __name__ == "__main__":
     unittest.main()
