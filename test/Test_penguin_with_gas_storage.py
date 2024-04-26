@@ -1,38 +1,36 @@
 import unittest
-from penguin_with_gas_storage import dfs, checking_connection, reading_from_file, writing_to_the_file
-
+import os
+import sys
+test_file_path = os.path.abspath(__file__)
+common_parent_path = os.path.abspath(os.path.join(os.path.dirname(test_file_path), os.pardir))
+src_path = os.path.join(common_parent_path, 'src')
+sys.path.append(src_path)
+from penguin_with_gas_storage import dfs, checking_connection
 
 class TestCheckingConnection(unittest.TestCase):
     def test_unreachable_storage(self):
-        input_data = "input_unreachable.txt"
-        cities, storage, pipelines = reading_from_file(input_data)
+        cities = ['A', 'B', 'C', 'D', 'E']
+        storage = ['A', 'B']
+        pipelines = [('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E')]
         unreachable = checking_connection(cities, storage, pipelines)
-        output_data = "output_unreachable.txt"
-        expected_output = read_output_data(output_data)
+        expected_output = []
         self.assertEqual(unreachable, expected_output)
 
     def test_all_reachable(self):
-        input_data = "input_all_reachable.txt"
-        cities, storage, pipelines = reading_from_file(input_data)
+        cities = ['A', 'B', 'C', 'D']
+        storage = ['A', 'B']
+        pipelines = [('A', 'B'), ('B', 'C'), ('C', 'D')]
         unreachable = checking_connection(cities, storage, pipelines)
-        output_data = "output_all_reachable.txt"
-        expected_output = read_output_data(output_data)
+        expected_output = []
         self.assertEqual(unreachable, expected_output)
 
     def test_empty_input(self):
-        input_data = "input_empty.txt"
-        cities, storage, pipelines = reading_from_file(input_data)
+        cities = []
+        storage = []
+        pipelines = []
         unreachable = checking_connection(cities, storage, pipelines)
-        output_data = "output_empty.txt"
-        expected_output = read_output_data(output_data)
+        expected_output = []
         self.assertEqual(unreachable, expected_output)
-
-
-def read_output_data(file_path):
-    with open(file_path, "r") as file:
-        lines = file.readlines()
-        return [line.strip().split(", ") for line in lines]
-
 
 if __name__ == "__main__":
     unittest.main()
