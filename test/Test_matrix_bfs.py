@@ -9,11 +9,9 @@ from matrix_bfs import bfs, main, is_valid
 
 class TestShortestPath(unittest.TestCase):
     def test_write_output_file(self):
-        input_file = os.path.join(os.path.dirname(__file__), "input_with_path.txt")
-        output_file = os.path.join(os.path.dirname(__file__), "test_output_with_path.txt")
-        start_point, end_point, mat = main(input_file)
-        shortest_distance = bfs(mat, start_point, end_point)
-        main(output_file, shortest_distance)
+        input_file = os.path.join(os.path.dirname(__file__), "input_with_input.txt")
+        output_file = os.path.join(os.path.dirname(__file__), "test_output_no_path.txt")
+        main(input_file, output_file)
         with open(output_file, "r") as file:
             output_data = int(file.read().strip())
         self.assertEqual(output_data, 12)
@@ -21,9 +19,7 @@ class TestShortestPath(unittest.TestCase):
     def test_no_path(self):
         input_file = os.path.join(os.path.dirname(__file__), "input_no_path.txt")
         output_file = os.path.join(os.path.dirname(__file__), "test_output_no_path.txt")
-        start_point, end_point, mat = main(input_file)
-        shortest_distance = bfs(mat, start_point, end_point)
-        main(output_file, shortest_distance)
+        main(input_file, output_file)
         with open(output_file, "r") as file:
             output_data = int(file.read().strip())
         self.assertEqual(output_data, -1)
