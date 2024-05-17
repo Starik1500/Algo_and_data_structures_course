@@ -48,8 +48,8 @@ def bfs(mat, src, dest):
 
 
 def main():
-    input_file_path = os.path.join(os.path.dirname(__file__), 'input.txt')
-    output_file_path = os.path.join(os.path.dirname(__file__), 'output.txt')
+    input_file_path = os.path.join(os.path.dirname(__file__), 'matrix_input.txt')
+    output_file_path = os.path.join(os.path.dirname(__file__), 'matrix_output.txt')
 
     with open(input_file_path, "r") as file:
         start_point = list(map(int, file.readline().split(", ")))
